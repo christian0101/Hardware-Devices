@@ -2,7 +2,7 @@
 /*
  * Copyright 2007 Phidgets Inc.  All rights reserved.
  */
-
+package sample;
 import com.phidgets.*;
 import com.phidgets.event.*;
 

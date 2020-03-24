@@ -1,3 +1,4 @@
+package sample;
 import com.phidgets.*;
 import com.phidgets.event.*;
 import java.util.*;
