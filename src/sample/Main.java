@@ -15,16 +15,23 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 500, 275));
         primaryStage.show();
 
+        DigitalOutput digitalOutput = new DigitalOutput(this);
         Runnable r = new Runnable() {
             public void run() {
-                DigitalOutput digitalOutput = new DigitalOutput();
+                boolean doState = false;
+
                 try {
-                    if (digitalOutput.initialise()) {
-                        digitalOutput.makeSound(0);
-                    }
+                    doState = digitalOutput.initialise();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+//                try {
+//                    if (digitalOutput.initialise()) {
+//                        digitalOutput.makeSound(0);
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
         };
 
@@ -32,6 +39,10 @@ public class Main extends Application {
         doThread.start();
 
         //doThread.interrupt();
+    }
+
+    public void printMsg(String msg) {
+        System.out.println(msg);
     }
 
     public static void main(String[] args) throws Exception {

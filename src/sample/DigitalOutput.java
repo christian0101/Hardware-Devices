@@ -6,7 +6,12 @@ import java.util.*;
 public class DigitalOutput {
 
   private InterfaceKitPhidget ik;
-  private Double[] forceSensorData = new Double[4];
+  private Integer[] forceSensorData = new Integer[4];
+  private Main parent;
+
+  DigitalOutput (Main parent) {
+    this.parent = parent;
+  }
 
   /**
    *
@@ -25,6 +30,10 @@ public class DigitalOutput {
     }
   }
 
+  public Integer[] getForceSensorData() {
+    return this.forceSensorData;
+  }
+
   public boolean initialise() throws Exception {
     System.out.println(Phidget.getLibraryVersion());
 
@@ -35,30 +44,36 @@ public class DigitalOutput {
         //System.out.println("attachment of " + ae);
       }
     });
+
     ik.addDetachListener(new DetachListener() {
       public void detached(DetachEvent ae) {
         //System.out.println("detachment of " + ae);
       }
     });
+
     ik.addErrorListener(new ErrorListener() {
       public void error(ErrorEvent ee) {
         //System.out.println(ee);
       }
     });
+
     ik.addInputChangeListener(new InputChangeListener() {
       public void inputChanged(InputChangeEvent oe) {
         //System.out.println(oe);
       }
     });
+
     ik.addOutputChangeListener(new OutputChangeListener() {
       public void outputChanged(OutputChangeEvent oe) {
         //System.out.println(oe);
       }
     });
+
     ik.addSensorChangeListener(new SensorChangeListener() {
       public void sensorChanged(SensorChangeEvent se) {
         // TODO: add force sensor logic
-
+        //System.out.println(se.getIndex() % 4 + " " + se.getValue());
+        forceSensorData[se.getIndex() % 4] = se.getValue();
 
       }
     });
