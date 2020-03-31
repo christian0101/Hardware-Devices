@@ -21,10 +21,6 @@ public class Main extends Application {
         primaryStage.setTitle("Recovery Application");
         primaryStage.setScene(new Scene(root, 500, 330));
         primaryStage.show();
-
-
-
-        //doThread.interrupt();
     }
 
     public void printMsg(String msg) {

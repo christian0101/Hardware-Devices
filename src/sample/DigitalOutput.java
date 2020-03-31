@@ -3,7 +3,7 @@ import com.phidgets.*;
 import com.phidgets.event.*;
 import java.util.*;
 
-public class DigitalOutput {
+public class DigitalOutput extends Thread {
 
   private InterfaceKitPhidget ik;
   private Integer[] forceSensorData = new Integer[4];
@@ -73,8 +73,10 @@ public class DigitalOutput {
       public void sensorChanged(SensorChangeEvent se) {
         forceSensorData[se.getIndex() % 4] = se.getValue();
 
-        int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
-        parent.printMsg(Integer.toString(avg));
+        if (forceSensorData.length > 0) {
+          int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
+          parent.printMsg(Integer.toString(avg));
+        }
       }
     });
 
@@ -87,5 +89,20 @@ public class DigitalOutput {
     Thread.sleep(500);
 
     return true;
+  }
+
+  @Override
+  public void run() {
+    super.run();
+
+    try {
+      initialise();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void stopDO() throws PhidgetException {
+    ik.close();
   }
 }

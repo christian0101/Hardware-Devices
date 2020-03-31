@@ -20,7 +20,7 @@
 
             <Label fx:id="dataLabel" text="Current Data will be shown here: " />
 
-            <Button text="Start exercise" />
+            <Button fx:id="startEx" text="Start exercise" onAction="#startActivity" />
             <padding>
                 <Insets bottom="10.0" top="20.0"/>
             </padding>
