@@ -73,12 +73,8 @@ public class DigitalOutput {
       public void sensorChanged(SensorChangeEvent se) {
         forceSensorData[se.getIndex() % 4] = se.getValue();
 
-        double avg = 0.0;
-        for (int sensorValue : forceSensorData) {
-          avg += sensorValue;
-        }
-        avg /= 4;
-        parent.printMsg(Double.toString(avg));
+        int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
+        parent.printMsg(Integer.toString(avg));
       }
     });
 
