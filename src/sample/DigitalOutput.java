@@ -8,11 +8,14 @@ public class DigitalOutput extends Thread {
   private InterfaceKitPhidget ik;
   private Integer[] forceSensorData = new Integer[4];
   private Main parent;
-
+  private int m_Result = 0;
   DigitalOutput (Main parent) {
     this.parent = parent;
   }
 
+  public int getResult() {
+    return m_Result;
+  }
   /**
    *
    * @param out output port
@@ -77,7 +80,7 @@ public class DigitalOutput extends Thread {
         forceSensorData[se.getIndex() % 4] = se.getValue();
 
         int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
-
+        m_Result = avg;
         try {
           ik.setOutputState(1, avg > 950);
         } catch (PhidgetException e) {
