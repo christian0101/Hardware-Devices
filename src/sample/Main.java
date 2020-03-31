@@ -22,6 +22,7 @@ public class Main extends Application {
         primaryStage.show();
 
         DigitalOutput digitalOutput = new DigitalOutput(this);
+
         Runnable r = new Runnable() {
             public void run() {
                 boolean doState = false;
