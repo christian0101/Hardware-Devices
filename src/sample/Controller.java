@@ -51,15 +51,21 @@ public class Controller implements Initializable {
         UpdateListView();
     }
 
+    @FXML
     private void UpdateListView() {
-        try {
-            List<String> lines = Files.readAllLines(Paths.get("output.txt"));
-            ObservableList<String> observableList = FXCollections.observableList(lines);
-            listView.setItems(observableList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Platform.runLater(() ->
+        {
+            List<String> lines = null;
+            try {
+                lines = Files.readAllLines(Paths.get("output.txt"));
+                ObservableList<String> observableList = FXCollections.observableList(lines);
+                listView.setItems(observableList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
+
     public void setMain(Main InMainRef) {
         m_MainRef = InMainRef;
     }
