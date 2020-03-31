@@ -9,6 +9,8 @@ public class DigitalOutput extends Thread {
   private Integer[] forceSensorData = new Integer[4];
   private Main parent;
   private int m_Result = 0;
+  private boolean stopped = false;
+
   DigitalOutput (Main parent) {
     this.parent = parent;
   }
@@ -42,6 +44,7 @@ public class DigitalOutput extends Thread {
 
   public boolean initialise() throws Exception {
     System.out.println(Phidget.getLibraryVersion());
+
 
     ik = new InterfaceKitPhidget();
 
@@ -81,6 +84,7 @@ public class DigitalOutput extends Thread {
 
         int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
         m_Result = avg;
+
         try {
           ik.setOutputState(1, avg > 950);
         } catch (PhidgetException e) {
@@ -114,6 +118,11 @@ public class DigitalOutput extends Thread {
   }
 
   public void stopDO() throws PhidgetException {
+    System.out.print("closing...");
+    ik.setOutputState(1, false);
     ik.close();
+    ik = null;
+    stopped = true;
+    System.out.println(" ok");
   }
 }

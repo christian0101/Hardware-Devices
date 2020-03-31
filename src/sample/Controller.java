@@ -59,6 +59,7 @@ public class Controller implements Initializable {
             try {
                 lines = Files.readAllLines(Paths.get("output.txt"));
                 ObservableList<String> observableList = FXCollections.observableList(lines);
+                FXCollections.reverse(observableList);
                 listView.setItems(observableList);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -84,7 +85,7 @@ public class Controller implements Initializable {
         FileWriter fr = null;
         try {
             fr = new FileWriter(file, true);
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy (HH:mm:ss) ->");
             LocalDateTime now = LocalDateTime.now();
             fr.append(dtf.format(now));
             fr.append(' ');
@@ -106,6 +107,10 @@ public class Controller implements Initializable {
         DigitalOutput digitalOutput = new DigitalOutput(m_MainRef);
         digitalOutput.start();
 
+        Platform.runLater(() ->
+        {
+            startEx.setDisable(true);
+        });
         final Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             int i = 5;
@@ -120,6 +125,7 @@ public class Controller implements Initializable {
 
                     Platform.runLater(() ->
                     {
+                        startEx.setDisable(false);
                         startEx.setText("Exercise completed! New reading?");
                     });
                     try {
