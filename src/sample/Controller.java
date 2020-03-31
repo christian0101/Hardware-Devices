@@ -17,10 +17,17 @@ public class Controller implements Initializable {
     @FXML
     ListView listView;
 
+    @FXML
+    Label dataLabel;
+
     public void initialize(URL arg0, ResourceBundle arg1) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         welcomeLabel.setText("Welcome, today is: " + dtf.format(now));
 
+    }
+
+    public void updateData(double newVal) {
+        dataLabel.setText(Double.toString(newVal));
     }
 }

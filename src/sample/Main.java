@@ -8,9 +8,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private Controller sceneController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+
+        sceneController = loader.getController();
+
         primaryStage.setTitle("Recovery Application");
         primaryStage.setScene(new Scene(root, 500, 275));
         primaryStage.show();
@@ -25,13 +31,6 @@ public class Main extends Application {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                try {
-//                    if (digitalOutput.initialise()) {
-//                        digitalOutput.makeSound(0);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
             }
         };
 
@@ -39,6 +38,10 @@ public class Main extends Application {
         doThread.start();
 
         //doThread.interrupt();
+    }
+
+    public void updateControllerData(double val) {
+        sceneController.updateData(val);
     }
 
     public void printMsg(String msg) {

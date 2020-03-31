@@ -11,6 +11,7 @@ public class DigitalOutput {
 
   DigitalOutput (Main parent) {
     this.parent = parent;
+    parent.updateControllerData(5);
   }
 
   /**
@@ -71,10 +72,7 @@ public class DigitalOutput {
 
     ik.addSensorChangeListener(new SensorChangeListener() {
       public void sensorChanged(SensorChangeEvent se) {
-        // TODO: add force sensor logic
-        //System.out.println(se.getIndex() % 4 + " " + se.getValue());
         forceSensorData[se.getIndex() % 4] = se.getValue();
-
       }
     });
 
