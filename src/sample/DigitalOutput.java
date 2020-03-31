@@ -73,6 +73,13 @@ public class DigitalOutput {
     ik.addSensorChangeListener(new SensorChangeListener() {
       public void sensorChanged(SensorChangeEvent se) {
         forceSensorData[se.getIndex() % 4] = se.getValue();
+
+//        double avg = 0.0;
+//        for (int sensorValue : forceSensorData) {
+//          avg += sensorValue;
+//        }
+//        avg /= 4;
+//        parent.updateControllerData(avg);
       }
     });
 
