@@ -6,6 +6,7 @@ import java.util.*;
 public class DigitalOutput {
 
   private InterfaceKitPhidget ik;
+  private Double[] forceSensorData = new Double[4];
 
   /**
    *
@@ -57,6 +58,8 @@ public class DigitalOutput {
     ik.addSensorChangeListener(new SensorChangeListener() {
       public void sensorChanged(SensorChangeEvent se) {
         // TODO: add force sensor logic
+
+
       }
     });
 
