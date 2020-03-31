@@ -13,6 +13,7 @@
     </top>
     <center>
         <VBox alignment="bottom_right" spacing="10" BorderPane.alignment="TOP_CENTER">
+         <ListView fx:id="listView" prefHeight="102.0" prefWidth="298.0" />
             <Label text="Static text now" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <Button text="Start exercise" />
          <padding>

@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -12,6 +13,9 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML
     Label welcomeLabel;
+
+    @FXML
+    ListView listView;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
