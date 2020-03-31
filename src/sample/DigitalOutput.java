@@ -17,9 +17,10 @@ public class DigitalOutput extends Thread {
    *
    * @param out output port
    */
-  public void makeSound(int out) {
+  public void makeSound(int out, int duration) {
     int count = 0;
-    while (true) {
+    long startTime = System.currentTimeMillis();
+    while (System.currentTimeMillis() - startTime <= duration) {
       try {
         boolean state = Math.abs(Math.round(Math.sin(Math.sin(count)) * 1000)) != 0;
         ik.setOutputState(out, state);
@@ -27,6 +28,8 @@ public class DigitalOutput extends Thread {
       } catch(Exception e) {
         System.out.println(e);
       }
+
+      duration--;
     }
   }
 

@@ -55,19 +55,6 @@ public class Controller implements Initializable {
     @FXML
     private void startActivity(ActionEvent event) throws InterruptedException {
         DigitalOutput digitalOutput = new DigitalOutput(m_MainRef);
-
-//        Runnable r = new Runnable() {
-//            public void run() {
-//                boolean doState = false;
-//
-//                try {
-//                    doState = digitalOutput.initialise();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-
         digitalOutput.start();
 
         final Timer timer = new Timer();
@@ -88,6 +75,7 @@ public class Controller implements Initializable {
                     });
 
                     try {
+                        digitalOutput.makeSound(0, 1000000);
                         digitalOutput.stopDO();
                         digitalOutput.interrupt();
                     } catch (PhidgetException e) {
