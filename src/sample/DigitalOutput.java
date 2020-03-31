@@ -76,10 +76,15 @@ public class DigitalOutput extends Thread {
       public void sensorChanged(SensorChangeEvent se) {
         forceSensorData[se.getIndex() % 4] = se.getValue();
 
-        if (forceSensorData.length > 0) {
-          int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
-          parent.printMsg(Integer.toString(avg));
+        int avg = ((forceSensorData[0] + forceSensorData[2]) / 2) + ((forceSensorData[1] + forceSensorData[3]) / 2);
+
+        try {
+          ik.setOutputState(1, avg > 950);
+        } catch (PhidgetException e) {
+          e.printStackTrace();
         }
+
+        parent.printMsg(Integer.toString(avg));
       }
     });
 
