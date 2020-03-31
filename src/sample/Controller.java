@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -27,7 +29,11 @@ public class Controller implements Initializable {
 
     }
 
-    public void updateData(double newVal) {
-        dataLabel.setText(Double.toString(newVal));
+    @FXML
+    public void updateData(String newVal) {
+        Platform.runLater(() ->
+        {
+            dataLabel.setText(newVal);
+        });
     }
 }

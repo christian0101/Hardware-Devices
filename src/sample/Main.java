@@ -18,7 +18,7 @@ public class Main extends Application {
         sceneController = loader.getController();
 
         primaryStage.setTitle("Recovery Application");
-        primaryStage.setScene(new Scene(root, 500, 275));
+        primaryStage.setScene(new Scene(root, 500, 330));
         primaryStage.show();
 
         DigitalOutput digitalOutput = new DigitalOutput(this);
@@ -41,12 +41,8 @@ public class Main extends Application {
         //doThread.interrupt();
     }
 
-    public void updateControllerData(double val) {
-        sceneController.updateData(val);
-    }
-
     public void printMsg(String msg) {
-        System.out.println(msg);
+        sceneController.updateData(msg);
     }
 
     public static void main(String[] args) throws Exception {
