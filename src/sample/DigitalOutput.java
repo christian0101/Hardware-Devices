@@ -4,7 +4,14 @@ import com.phidgets.event.*;
 import java.util.*;
 
 public class DigitalOutput {
-  public static void sound(InterfaceKitPhidget ik, int out) {
+
+  private InterfaceKitPhidget ik;
+
+  /**
+   *
+   * @param out output port
+   */
+  public void makeSound(int out) {
     int count = 0;
     while (true) {
       try {
@@ -17,38 +24,34 @@ public class DigitalOutput {
     }
   }
 
-  public static final void main(String args[]) throws Exception {
-    InterfaceKitPhidget ik;
-
-    // Example of enabling logging.
-    // Phidget.enableLogging(Phidget.PHIDGET_LOG_VERBOSE, null);
-
+  public boolean initialise() throws Exception {
     System.out.println(Phidget.getLibraryVersion());
 
     ik = new InterfaceKitPhidget();
+
     ik.addAttachListener(new AttachListener() {
       public void attached(AttachEvent ae) {
-        System.out.println("attachment of " + ae);
+        //System.out.println("attachment of " + ae);
       }
     });
     ik.addDetachListener(new DetachListener() {
       public void detached(DetachEvent ae) {
-        System.out.println("detachment of " + ae);
+        //System.out.println("detachment of " + ae);
       }
     });
     ik.addErrorListener(new ErrorListener() {
       public void error(ErrorEvent ee) {
-        System.out.println(ee);
+        //System.out.println(ee);
       }
     });
     ik.addInputChangeListener(new InputChangeListener() {
       public void inputChanged(InputChangeEvent oe) {
-        System.out.println(oe);
+        //System.out.println(oe);
       }
     });
     ik.addOutputChangeListener(new OutputChangeListener() {
       public void outputChanged(OutputChangeEvent oe) {
-        System.out.println(oe);
+        //System.out.println(oe);
       }
     });
     ik.addSensorChangeListener(new SensorChangeListener() {
@@ -64,6 +67,6 @@ public class DigitalOutput {
 
     Thread.sleep(500);
 
-    sound(ik, 0);
+    return true;
   }
 }

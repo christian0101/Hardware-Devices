@@ -16,32 +16,6 @@ public class ThroughIFKit {
 
     System.out.println(Phidget.getLibraryVersion());
 
-    lcd = new TextLCDPhidget();
-    lcd.addAttachListener(new AttachListener() {
-
-      public void attached(AttachEvent ae) {
-        System.out.println("attachment of " + ae);
-      }
-    });
-
-    lcd.addDetachListener(new DetachListener() {
-
-      public void detached(DetachEvent ae) {
-        System.out.println("detachment of " + ae);
-      }
-    });
-
-    lcd.addErrorListener(new ErrorListener() {
-
-      public void error(ErrorEvent ee) {
-        System.out.println("error event for " + ee);
-      }
-    });
-
-    lcd.openAny();
-    System.out.println("Waiting for the TextLCD to be attached...");
-    lcd.waitForAttachment();
-
     ik = new InterfaceKitPhidget();
     ik.addAttachListener(new AttachListener() {
       public void attached(AttachEvent ae) {
@@ -84,13 +58,6 @@ public class ThroughIFKit {
 
         // DEBUG
         System.out.println("Index " + se.getIndex() + ": " + strValue);
-
-        try {
-          lcd.setDisplayString(0, msg);
-          lcd.setDisplayString(1, strValue);
-        } catch (Exception e) {
-          System.out.println(e);
-        }
       }
     });
 
