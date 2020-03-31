@@ -28,8 +28,8 @@ public class Main extends Application {
             }
         };
 
-        Thread doT = new Thread(r);
-        doT.start();
+        //Thread doT = new Thread(r);
+        //doT.start();
     }
 
     public static void main(String[] args) throws Exception {

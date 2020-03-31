@@ -56,6 +56,7 @@ public class DigitalOutput {
     });
     ik.addSensorChangeListener(new SensorChangeListener() {
       public void sensorChanged(SensorChangeEvent se) {
+        // TODO: add force sensor logic
       }
     });
 
