@@ -16,27 +16,13 @@ public class Main extends Application {
         Parent root = loader.load();
 
         sceneController = loader.getController();
+        sceneController.setMain(this);
 
         primaryStage.setTitle("Recovery Application");
         primaryStage.setScene(new Scene(root, 500, 330));
         primaryStage.show();
 
-        DigitalOutput digitalOutput = new DigitalOutput(this);
 
-        Runnable r = new Runnable() {
-            public void run() {
-                boolean doState = false;
-
-                try {
-                    doState = digitalOutput.initialise();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Thread doThread = new Thread(r);
-        doThread.start();
 
         //doThread.interrupt();
     }
